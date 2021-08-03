@@ -89,19 +89,33 @@ public class MovieInfoController {
 				}
 			}
 		}	
+		String jsonString = makeBigJson(movieOverRate);
+		
+		return jsonString;
+	}
+	
+	public String makeBigJson (ArrayList<MovieInformation> array)
+	{
+		if(array == null || array.isEmpty())
+		{
+			return "ERROR_JSONARRAY_NULL";
+		}
+		if(array.isEmpty())
+		{
+			return "ERROR_JSONARRAY_EMPTY";
+		}
 		StringBuilder str = new StringBuilder();
 		
 		str.append("[");
-		for(int i = 0; i <movieOverRate.size(); i++ )
+		for(int i = 0; i <array.size(); i++ )
 		{
-			str.append(movieOverRate.get(i).getJsonString());
-			if(i+1 < movieOverRate.size())
+			str.append(array.get(i).getJsonString());
+			if(i+1 < array.size())
 			{
 				str.append(",");
 			}
 		}
 		str.append("]");
-		
 		return str.toString();
 	}
 
